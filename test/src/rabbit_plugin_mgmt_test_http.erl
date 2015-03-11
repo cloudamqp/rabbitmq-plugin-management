@@ -14,7 +14,7 @@
 %%   Copyright (c) 2010-2014 GoPivotal, Inc.  All rights reserved.
 %%
 
--module(rabbit_shovel_mgmt_test_http).
+-module(rabbit_plugin_mgmt_test_http).
 
 -include_lib("rabbitmq_management/include/rabbit_mgmt_test.hrl").
 

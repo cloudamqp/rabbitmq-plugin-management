@@ -14,7 +14,7 @@
 %%  Copyright (c) 2007-2014 GoPivotal, Inc.  All rights reserved.
 %%
 
--module(rabbit_shovel_mgmt).
+-module(rabbit_plugin_mgmt).
 
 -behaviour(rabbit_mgmt_extension).
 
@@ -28,9 +28,9 @@
 -include_lib("amqp_client/include/amqp_client.hrl").
 -include_lib("webmachine/include/webmachine.hrl").
 
-dispatcher() -> [{["shovels"],        ?MODULE, []},
-                 {["shovels", vhost], ?MODULE, []}].
-web_ui()     -> [{javascript, <<"shovel.js">>}].
+dispatcher() -> [{["plugins"],        ?MODULE, []},
+                 {["plugins", vhost], ?MODULE, []}].
+web_ui()     -> [{javascript, <<"plugin.js">>}].
 
 %%--------------------------------------------------------------------
 

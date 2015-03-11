@@ -14,12 +14,12 @@
 %%   Copyright (c) 2010-2014 GoPivotal, Inc.  All rights reserved.
 %%
 
--module(rabbit_shovel_mgmt_test_all).
+-module(rabbit_plugin_mgmt_test_all).
 
 -export([all_tests/0]).
 
 all_tests() ->
-    ok = eunit:test(tests(rabbit_shovel_mgmt_test_http, 60), [verbose]).
+    ok = eunit:test(tests(rabbit_plugin_mgmt_test_http, 60), [verbose]).
 
 tests(Module, Timeout) ->
     {foreach, fun() -> ok end,

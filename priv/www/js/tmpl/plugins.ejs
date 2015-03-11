@@ -1,8 +1,7 @@
-<h1>Dynamic Shovels</h1>
+<h1>Plugins</h1>
 <div class="section">
-  <h2>Shovels</h2>
   <div class="hider updatable">
-<% if (shovels.length > 0) { %>
+<% if (plugins.length > 0) { %>
 <table class="list">
  <thead>
   <tr>
@@ -21,38 +20,38 @@
  </thead>
  <tbody>
 <%
- for (var i = 0; i < shovels.length; i++) {
-    var shovel = shovels[i];
+ for (var i = 0; i < plugins.length; i++) {
+    var plugin = plugins[i];
 %>
    <tr<%= alt_rows(i)%>>
 <% if (vhosts_interesting) { %>
-     <td><%= fmt_string(shovel.vhost) %></td>
+     <td><%= fmt_string(plugin.vhost) %></td>
 <% } %>
-     <td><%= link_shovel(shovel.vhost, shovel.name) %></td>
-     <td><%= fmt_shortened_uri(shovel.value['src-uri']) %></td>
-     <td><%= fmt_shovel_endpoint('src', shovel.value) %></td>
-     <td><%= fmt_shortened_uri(shovel.value['dest-uri']) %></td>
-     <td><%= fmt_shovel_endpoint('dest', shovel.value) %></td>
-     <td class="r"><%= shovel.value['prefetch-count'] %></td>
-     <td class="r"><%= fmt_time(shovel.value['reconnect-delay'], 's') %></td>
-     <td class="c"><%= fmt_boolean(shovel.value['add-forward-headers']) %></td>
-     <td class="c"><%= fmt_string(shovel.value['ack-mode']) %></td>
-     <td><%= fmt_string(shovel.value['delete-after']) %></td>
+     <td><%= link_plugin(plugin.vhost, plugin.name) %></td>
+     <td><%= fmt_shortened_uri(plugin.value['src-uri']) %></td>
+     <td><%= fmt_plugin_endpoint('src', plugin.value) %></td>
+     <td><%= fmt_shortened_uri(plugin.value['dest-uri']) %></td>
+     <td><%= fmt_plugin_endpoint('dest', plugin.value) %></td>
+     <td class="r"><%= plugin.value['prefetch-count'] %></td>
+     <td class="r"><%= fmt_time(plugin.value['reconnect-delay'], 's') %></td>
+     <td class="c"><%= fmt_boolean(plugin.value['add-forward-headers']) %></td>
+     <td class="c"><%= fmt_string(plugin.value['ack-mode']) %></td>
+     <td><%= fmt_string(plugin.value['delete-after']) %></td>
    </tr>
 <% } %>
  </tbody>
 </table>
 <% } else { %>
-  <p>... no shovels ...</p>
+  <p>... no plugins ...</p>
 <% } %>
   </div>
 </div>
 
 <div class="section-hidden">
-  <h2>Add a new shovel</h2>
+  <h2>Add a new plugin</h2>
   <div class="hider">
-    <form action="#/shovel-parameters" method="put">
-      <input type="hidden" name="component" value="shovel"/>
+    <form action="#/plugin-parameters" method="put">
+      <input type="hidden" name="component" value="plugin"/>
       <table class="form">
 <% if (vhosts_interesting) { %>
         <tr>
@@ -79,14 +78,14 @@
               <tr>
                 <th>
                   URI
-                  <span class="help" id="shovel-uri"></span>
+                  <span class="help" id="plugin-uri"></span>
                 </th>
                 <th>
                   <select name="queue-or-exchange" class="narrow controls-appearance">
                     <option value="src-queue">Queue:</option>
                     <option value="src-exchange">Exchange:</option>
                   </select>
-                  <span class="help" id="shovel-queue-exchange"></span>
+                  <span class="help" id="plugin-queue-exchange"></span>
                 </th>
               </tr>
               <tr>
@@ -111,14 +110,14 @@
               <tr>
                 <th>
                   URI
-                  <span class="help" id="shovel-uri"></span>
+                  <span class="help" id="plugin-uri"></span>
                 </th>
                 <th>
                   <select name="queue-or-exchange" class="narrow controls-appearance">
                     <option value="dest-queue">Queue:</option>
                     <option value="dest-exchange">Exchange:</option>
                   </select>
-                  <span class="help" id="shovel-queue-exchange"></span>
+                  <span class="help" id="plugin-queue-exchange"></span>
                 </th>
               </tr>
               <tr>
@@ -140,7 +139,7 @@
           <th>
             <label>
               Prefetch count:
-              <span class="help" id="shovel-prefetch"></span>
+              <span class="help" id="plugin-prefetch"></span>
             </label>
           </th>
           <td><input type="text" name="prefetch-count"/></td>
@@ -149,7 +148,7 @@
           <th>
             <label>
               Reconnect delay:
-              <span class="help" id="shovel-reconnect"></span>
+              <span class="help" id="plugin-reconnect"></span>
             </label>
           </th>
           <td><input type="text" name="reconnect-delay"/> s</td>
@@ -158,7 +157,7 @@
           <th>
             <label>
               Add forwarding headers:
-              <span class="help" id="shovel-forward-headers"></span>
+              <span class="help" id="plugin-forward-headers"></span>
             </label>
           </th>
           <td>
@@ -172,7 +171,7 @@
           <th>
             <label>
               Acknowledgement mode:
-              <span class="help" id="shovel-ack-mode"></span>
+              <span class="help" id="plugin-ack-mode"></span>
             </label>
           </th>
           <td>
@@ -187,7 +186,7 @@
           <th>
             <label>
               Auto-delete
-              <span class="help" id="shovel-delete-after"></span>
+              <span class="help" id="plugin-delete-after"></span>
             </label>
           </th>
           <td>
@@ -198,7 +197,7 @@
           </td>
         </tr>
       </table>
-      <input type="submit" value="Add shovel"/>
+      <input type="submit" value="Add plugin"/>
     </form>
   </div>
 </div>

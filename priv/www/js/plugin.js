@@ -1,20 +1,13 @@
 dispatcher_add(function(sammy) {
-    sammy.get('#/shovels', function() {
-            render({'shovels': {path:    '/shovels',
-                                options: {vhost:true}}},
-                    'shovels', '#/shovels');
+    sammy.get('#/plugins', function() {
+            render({'plugins': {path: '/plugins'}},
+                    'plugins', '#/plugins');
         });
-    sammy.get('#/dynamic-shovels', function() {
-            render({'shovels': {path:   '/parameters/shovel',
-                            options:{vhost:true}},
-                    'vhosts': '/vhosts'},
-                   'dynamic-shovels', '#/dynamic-shovels');
+    sammy.get('#/plugins/:name', function() {
+            render({'plugin': '/plugins/' + esc(this.params['name'])},
+                   'plugins', '#/plugins');
         });
-    sammy.get('#/dynamic-shovels/:vhost/:id', function() {
-            render({'shovel': '/parameters/shovel/' + esc(this.params['vhost']) + '/' + esc(this.params['id'])},
-                   'dynamic-shovel', '#/dynamic-shovels');
-        });
-    sammy.put('#/shovel-parameters', function() {
+    sammy.put('#/plugins/:name', function() {
             var num_keys = ['prefetch-count', 'reconnect-delay'];
             var bool_keys = ['add-forward-headers'];
             var arrayable_keys = ['src-uri', 'dest-uri'];
@@ -28,16 +21,15 @@ dispatcher_add(function(sammy) {
             }
             return false;
         });
-    sammy.del('#/shovel-parameters', function() {
-            if (sync_delete(this, '/parameters/:component/:vhost/:name'))
-                go_to('#/dynamic-shovels');
+    sammy.del('#/plugins/:name', function() {
+            if (sync_delete(this, '/plugins/:name'))
+                go_to('#/plugins');
             return false;
         });
 });
 
 
-NAVIGATION['Admin'][0]['Shovel Status'] = ['#/shovels', "monitoring"];
-NAVIGATION['Admin'][0]['Shovel Management'] = ['#/dynamic-shovels', "policymaker"];
+NAVIGATION['Admin'][0]['Plugins'] = ['#/plugins', "administrator"];
 
 HELP['shovel-uri'] =
     'Both source and destination can be either a local or remote broker. See the "URI examples" pane for examples of how to construct URIs. If connecting to a cluster, you can enter several URIs here separated by spaces.';
