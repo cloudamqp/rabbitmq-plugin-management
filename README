@@ -6,3 +6,5 @@ GET /api/plugins list available plugins
 PUT /api/plugins/:plugin-name enables a plugin
 DELETE /api/plugins/:plugin-name disabled a plugin
 
+Based on the Rabbit Shovel Management plugin
+
